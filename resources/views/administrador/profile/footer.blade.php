@@ -1,5 +1,5 @@
  <!-- ======= Footer ======= -->
-  <footer id="footer" class="footer">
+  <footer id="footer" class="footer bg-white d-none">
     <!--
     <div class="copyright">
       &copy; Copyright <strong><span>NiceAdmin</span></strong>. All Rights Reserved
@@ -10,7 +10,12 @@
       <!-- You can delete the links only if you purchased the pro version. -->
       <!-- Licensing information: https://bootstrapmade.com/license/ -->
       <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-      <img src="https://propiedadesenvaldivia.com/wp-content/uploads/2020/11/logo-1.png" alt="" class="img-fluid">
+
+      <div class="d-flex justify-content-center bd-highlight mb-3">
+        <div class="p-2 bd-highlight">
+          <img src="https://propiedadesenvaldivia.com/wp-content/uploads/2020/11/logo-1.png" class="rounded mx-auto d-block m-4" alt="..." style="width: 60%">          
+        </div>
+      </div>
     </div>
   </footer>
   <!-- End Footer -->

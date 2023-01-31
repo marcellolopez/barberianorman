@@ -20,21 +20,8 @@
       </form>
     </div>
   </div>
-</div><!-- End Small Modal-->
-<script>
+</div>
 
-
-$(document).ready(function() {
-    $('#main').backstretch([
-      '{{ url("imagenes/barbershop-1612726-min.jpg") }}',
-      '{{ url("imagenes/barbershop-4762345-min.jpg") }}',
-      '{{ url("imagenes/barber-5194406-min.jpg") }}'
-      ], {
-        fade: 750,
-        duration: 4000
-    });
-});
-</script>
 <script>
   var calendar = null;
   document.addEventListener('DOMContentLoaded', function() {

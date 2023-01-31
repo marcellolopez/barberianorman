@@ -54,7 +54,7 @@
 
 
 
-  <main id="main" class="main bg-dark">
+  <main id="main" class="main bg-transparent">
     @include('administrador.profile.pagetitle')
 
 
@@ -68,6 +68,74 @@
  
 
 </body>
+<style>
+  * { 
+    box-sizing: border-box; 
+  }
+  html {
+    margin: 0;
+    background-size: cover;
+    background: url('{{ url("imagenes/barbershop-1612726-min.jpg") }}') no-repeat center center fixed;
+    background-blend-mode: darken;
+    // blend mode optional at this stage; will be used more in the next demo.
+
+    -webkit-transition: 2s;
+    -moz-transition: 2s;
+    -o-transition: 2s;
+    transition: 2s;  
+  }
+  body { margin: 0; } 
+  ::-webkit-scrollbar-track
+  {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.6);
+    background-color: #CCCCCC;
+  }
+
+  ::-webkit-scrollbar
+  {
+    width: 15px;
+    background-color: #F5F5F5;
+  }
+
+  ::-webkit-scrollbar-thumb
+  {
+    background-color: #FFF;
+    background-image: -webkit-linear-gradient(90deg,
+                                              rgba(0, 0, 0, 1) 0%,
+                          rgba(0, 0, 0, 1) 25%,
+                          transparent 100%,
+                          rgba(0, 0, 0, 1) 75%,
+                          transparent)
+  }
+</style>
+<script>
+$(document).ready(function() {
+  var bgImageArray = [
+      '{{ url("imagenes/barbershop-1612726-min.jpg") }}',
+      '{{ url("imagenes/barbershop-4762345-min.jpg") }}',
+      '{{ url("imagenes/barber-5194406-min.jpg") }}'
+      ];
+  base = "",
+  secs = 4;
+  bgImageArray.forEach(function(img){
+      new Image().src = img; 
+      // caches images, avoiding white flash between background replacements
+  });
+
+  function backgroundSequence() {
+    window.clearTimeout();
+    var k = 0;
+    for (i = 0; i < bgImageArray.length; i++) {
+      setTimeout(function(){ 
+        document.documentElement.style.background = "url(" + base + bgImageArray[k] + ") no-repeat center center fixed";
+        document.documentElement.style.backgroundSize ="cover";
+      if ((k + 1) === bgImageArray.length) { setTimeout(function() { backgroundSequence() }, (secs * 1000))} else { k++; }      
+      }, (secs * 1000) * i) 
+    }
+  }
+  backgroundSequence();
+});
+</script>
   <script>
     $( ".toggle-sidebar-btn" ).click(function() {
         $.ajax({
