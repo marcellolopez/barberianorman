@@ -46,7 +46,7 @@
   ======================================================== -->
 </head>
 
-<body class="">
+<body class="{{session('menu', '')}}">
   @include('administrador.profile.header')
 
   @include('administrador.profile.sidebar')
@@ -68,5 +68,26 @@
  
 
 </body>
-
+  <script>
+    $( ".toggle-sidebar-btn" ).click(function() {
+        $.ajax({
+            type: "post",
+            url:'{{ url("admin/menu") }}',
+            data: {
+              "_token": "{{ csrf_token() }}",
+              'menu': $("body").attr('class')
+            },
+            success: function (response) {
+              if(response.status == 500){
+                console.log(response);
+              }
+            },
+            error: function (data) {
+                console.log('Error:', data);
+            },
+            beforeSend: function() {
+            }
+        });
+    });
+  </script>
 </html>

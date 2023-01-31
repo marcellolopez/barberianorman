@@ -135,4 +135,8 @@ class AdminController extends Controller
     public function exportarExcel(){
         return Excel::download(new ClientesExport, 'clientes.xlsx');
     }
+
+    public function menu(Request $request){
+        $request->session()->put('menu', $request->menu);
+    }    
 }

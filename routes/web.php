@@ -37,6 +37,7 @@ Route::get('admin/agenda', [AdminController::class, 'agendarCliente']);
 Route::get('admin/registros', [AdminController::class, 'verRegistros']);
 Route::get('admin/getClientes', [AdminController::class, 'getClientesDatatables']);
 Route::get('admin/reportes', [AdminController::class, 'exportarExcel']);
+Route::post('admin/menu', [AdminController::class, 'menu']);
 
 
 Route::get('cargarAgendaBarbero', [AdminController::class, 'cargarAgendaBarbero']);
