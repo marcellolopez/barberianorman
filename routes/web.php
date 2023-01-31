@@ -31,18 +31,18 @@ Route::post('reservarHora', [AgendaController::class, 'reservarHora']);
 Route::get('send', 'IndexController@send');
 
 
-Route::get('admin/login', [AdminController::class, 'admin/login']);
-Route::get('admin/index', [AdminController::class, 'admin/index']);
-Route::get('admin/agenda', [AdminController::class, 'admin/agenda']);
-Route::get('admin/registros', [AdminController::class, 'admin/registros']);
-Route::get('admin/getClientes', [AdminController::class, 'admin/getClientes']);
-Route::get('admin/reportes', [AdminController::class, 'admin/reportes']);
+Route::get('admin/login', [AdminController::class, 'viewLogin']);
+Route::get('admin/index', [AdminController::class, 'index']);
+Route::get('admin/agenda', [AdminController::class, 'agendarCliente']);
+Route::get('admin/registros', [AdminController::class, 'verRegistros']);
+Route::get('admin/getClientes', [AdminController::class, 'getClientesDatatables']);
+Route::get('admin/reportes', [AdminController::class, 'exportarExcel']);
 
 
 Route::get('cargarAgendaBarbero', [AdminController::class, 'cargarAgendaBarbero']);
 Route::get('cargarProgramacionBarbero', [AdminController::class, 'cargarProgramacionBarbero']);
 Route::get('guardarProgramacionBarbero', [AdminController::class, 'guardarProgramacionBarbero']);
-Route::get('calendarioBarbero', [AdminController::class, 'calendarioBarbero']);
+Route::get('calendarioBarbero', [AdminController::class, 'calendarioBarberoAjax']);
 
 Route::get('actualizarBarbero', [BarberoController::class, 'actualizarBarbero']);
 
