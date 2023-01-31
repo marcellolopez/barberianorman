@@ -9,12 +9,15 @@
           <div id="formulario_registro" class="col-lg-6 offset-lg-3 ">
             <div class="card special-card">
               <div class="card-body">
-                <h5 class="card-title">Registro de usuario</h5>
+                <h1 class="card-title display-2 text-center text-black d-none">Bienvenido</h1>
+                <img src="imagenes/logo-grande.png" class="d-none d-sm-block rounded mx-auto d-block w-25 m-4" alt="...">
+                <img src="imagenes/logo-grande.png" class="d-block d-sm-none rounded mx-auto d-block w-50 m-4" alt="...">
+                <p class="text-center h5 text-black mb-3">Para comenzar, ingrese su número móvil</p>
 
                 <!-- General Form Elements -->
                 <form id="consultar_cliente" name="consultar_cliente" method="post" >
                   <div class="row mb-3">
-                    <label for="inputNumber" class="col-sm-4 col-form-label">Teléfono</label>
+                    <label for="inputNumber" class="col-sm-4 col-form-label">Móvil</label>
                     <div class="col-sm-8">
                       <div class="col-sm-8 input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">+56</span>

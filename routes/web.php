@@ -41,9 +41,9 @@ Route::get('admin/reportes', [AdminController::class, 'exportarExcel']);
 
 Route::get('cargarAgendaBarbero', [AdminController::class, 'cargarAgendaBarbero']);
 Route::get('cargarProgramacionBarbero', [AdminController::class, 'cargarProgramacionBarbero']);
-Route::get('guardarProgramacionBarbero', [AdminController::class, 'guardarProgramacionBarbero']);
+Route::post('guardarProgramacionBarbero', [AdminController::class, 'guardarProgramacionBarbero']);
 Route::get('calendarioBarbero', [AdminController::class, 'calendarioBarberoAjax']);
 
-Route::get('actualizarBarbero', [BarberoController::class, 'actualizarBarbero']);
+Route::post('actualizarBarbero', [BarberoController::class, 'actualizarBarbero']);
 
 Route::get('bizagi', [ArchivosController::class, 'bizagi']);

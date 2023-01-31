@@ -335,13 +335,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 @media (min-width: 1200px) {
   .logo {
-    width: 280px;
+    width: 200px;
   }
 }
 .logo img {
   max-height: 50px;
-  margin-right: 6px;
-  margin-left: 25px;
+  margin-right: 15px;
+  /*margin-left: 25px;*/
 }
 .logo span {
   font-size: 26px;
