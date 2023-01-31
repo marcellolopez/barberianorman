@@ -34,8 +34,10 @@ Route::get('send', 'IndexController@send');
 Route::get('admin/login', [AdminController::class, 'viewLogin']);
 Route::get('admin/index', [AdminController::class, 'index']);
 Route::get('admin/agenda', [AdminController::class, 'agendarCliente']);
-Route::get('admin/registros', [AdminController::class, 'verRegistros']);
+Route::get('admin/verClientes', [AdminController::class, 'verClientes']);
+Route::get('admin/verBarberos', [AdminController::class, 'verBarberos']);
 Route::get('admin/getClientes', [AdminController::class, 'getClientesDatatables']);
+Route::get('admin/getBarberos', [AdminController::class, 'getBarberosDatatables']);
 Route::get('admin/reportes', [AdminController::class, 'exportarExcel']);
 Route::post('admin/menu', [AdminController::class, 'menu']);
 
@@ -48,3 +50,6 @@ Route::get('calendarioBarbero', [AdminController::class, 'calendarioBarberoAjax'
 Route::post('actualizarBarbero', [BarberoController::class, 'actualizarBarbero']);
 
 Route::get('bizagi', [ArchivosController::class, 'bizagi']);
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

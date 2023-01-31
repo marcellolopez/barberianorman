@@ -9,7 +9,7 @@
           <div class="col-lg-12">
             <div class="card special-card">
               <div class="card-body">
-                <h5 class="card-title">Clientes</h5>
+                <h5 class="card-title">Registros</h5>
                 <div class="row d-flex justify-content-center mt-2">
                   <div class="col-md-12">
                     <div class="table-container table-responsive">
@@ -52,12 +52,12 @@
                     sInfoEmpty:   "Del 0 al 0 de 0 registros",
                     sInfoFiltered:  "(filtrado de _MAX_ registros)",
                     sZeroRecords: "<h5><b>No se encontraron resultados</b></h5>",
-                    sEmptyTable:  "<h5><b>No hay horas reservadas pendientes de pago</b></h5>",
+                    sEmptyTable:  "<h5><b></b></h5>",
                     sInfo:      "Del _START_ al _END_ de _TOTAL_ registros",
-                    processing:   ""
+                    processing:   "Cargando"
                 },
                 serverSide: false,
-                ajax: {"url":"/admin/getClientes",
+                ajax: {"url":"/{{$url}}",
                     "type":"GET",
                     "datatype":"json",
                     "error": function (x,y,z){

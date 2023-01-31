@@ -6,15 +6,18 @@
     <section class="section vh-100">
       <div id="formulario" class="col-lg-10 offset-lg-1">
         <div class="row">
-          <div class="col-lg-5">
+          <div id="formulario_registro" class="col-lg-6 offset-lg-3 ">
             <div class="card special-card">
               <div class="card-body">
-                <h5 class="card-title">Registro de usuario</h5>
+                <h1 class="card-title display-2 text-center text-black d-none">Bienvenido</h1>
+                <img src="/imagenes/logo-grande.png" class="d-none d-sm-block rounded mx-auto d-block w-25 m-4" alt="...">
+                <img src="/imagenes/logo-grande.png" class="d-block d-sm-none rounded mx-auto d-block w-50 m-4" alt="...">
+                <p class="text-center h5 text-black mb-3">Para comenzar, ingrese el número móvil del cliente</p>
 
                 <!-- General Form Elements -->
                 <form id="consultar_cliente" name="consultar_cliente" method="post" >
                   <div class="row mb-3">
-                    <label for="inputNumber" class="col-sm-4 col-form-label">Teléfono</label>
+                    <label for="inputNumber" class="col-sm-4 col-form-label">Móvil</label>
                     <div class="col-sm-8">
                       <div class="col-sm-8 input-group mb-3">
                         <span class="input-group-text" id="basic-addon1">+56</span>
@@ -76,24 +79,73 @@
               </div>
             </div>
           </div>
-          <div id="calendario" class="col-lg-7" style="display: none;">
+          <div id="calendario" class="col-lg-6 offset-lg-3" style="display: none;">
             <div class="card special-card">
               <div class="card-body mt-2">
-                <h5 class="card-title">Agenda</h5>
-
+                <h5 class="card-title d-none">Agenda</h5>
+                <p class="text-center mt-2"><strong id="nombre_agendar">Marcello</strong>, selecciona un barbero y luego reserva tu hora</p>
                 <!-- General Form Elements -->
-                  <div class="row mb-3 mt-1">
-                    <label for="inputNumber" class="col-sm-4 col-form-label">Barbero</label>
-                    <div class="col-sm-8">
-                      <select class="form-select" id="select_barbero" aria-label="">
-                        <option value="0" >Seleccione un barbero</option>
-                        @foreach($barberos as $b)
-                          <option value="{{$b->id}}" {{$b->id == $barber_id ? 'selected' : ''}}>{{$b->nombres}} {{$b->apellido_paterno}}</option>
-                        @endforeach
-                      </select>
-                    </div>
+                <div class="row mb-3 mt-1">
+                  <div class="offset-lg-3 col-lg-6">
+                    <select class="form-select" id="select_barbero" aria-label="">
+                      <option value="0" >Seleccione un barbero</option>
+                      @foreach($barberos as $b)
+                        <option value="{{$b->id}}" {{$b->id == $barber_id ? 'selected' : ''}}>{{$b->nombres}} {{$b->apellido_paterno}}</option>
+                      @endforeach
+                    </select>
                   </div>
-                <div id='calendar' class="calendar mt-1"></div>
+                </div>
+                <div class="div-calendario">
+                  <div id='calendar' class="calendar mt-1" style=""></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="alerta" class="col-lg-6 offset-lg-3" style="display: none;">
+            <div class="card special-card">
+              <div class="card-body mt-2">
+                <h5 class="card-title d-none">Agenda</h5>
+                <!-- General Form Elements -->
+                <div class="row mb-3 mt-1">
+                  <form id="reservarHora" method="POST" action="{{ url('reservarHora') }}">
+                    <div class="modal-body">
+                        @csrf
+                        <input id="reserva_id" name="reserva_id" type="hidden">
+                        <input id="modal_celular" name="modal_celular" type="hidden">
+                        <p class="text-center">¿Deseas reservar para el día <strong class="fecha"></strong> a las <strong class="hora"></strong>?</p>
+                    </div>
+                    <div class="text-center">
+                      <button type="submit" class="btn btn-outline-primary" id="btnGuardar">Reservar</button>
+                      <button id="btn-cancelar" type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancelar</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="info" class="col-lg-6 offset-lg-3" style="display: none;">
+            <div class="card special-card">
+              <div class="card-body mt-2">
+                <div class="row mb-3 mt-1">
+                  <div class="modal-body">
+                    
+                    <h3  class="text-center">¡Tu reserva ha sido realizada!</h3>
+                    <p class="text-center">Te esperamos el día <strong class="fecha"></strong> a las <strong class="hora"></strong>.</p>
+                    <p class="text-center">Recuerda llegar 10 minutos antes de tu hora.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="reservado" class="col-lg-6 offset-lg-3" style="display: none;">
+            <div class="card special-card">
+              <div class="card-body mt-2">
+                <div class="row mb-3 mt-1">
+                  <div class="modal-body">
+                    <p class="text-center">Tienes una reserva el día <strong class="fecha"></strong> a las <strong class="hora"></strong>.</p>
+                    <p class="text-center">Si deseas cancelar tu reserva, llama al +56 9 54632156.</p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

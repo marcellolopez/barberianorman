@@ -61,7 +61,7 @@ class AgendaController extends Controller
         ->first();
         $reserva->title = 'Ocupado';
         $reserva->cliente_id = $cliente->id;
-        $reserva->reserva_admin = (Auth::check() ? Auth::user()->id : '');
+        $reserva->reserva_admin = (Auth::check() ? Auth::user()->id : null);
         if($reserva->save()){
             $array = array();
             $array['nombre'] = $cliente->nombres;

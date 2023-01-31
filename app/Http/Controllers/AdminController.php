@@ -122,14 +122,40 @@ class AdminController extends Controller
             }
         }
     }  
-    public function verRegistros(){
-        return view('administrador.registros');
+    public function verClientes(){
+        $url = 'admin/getClientes';
+        return view('administrador.registros',compact('url'));
+    }
+
+    public function verBarberos(){
+        $url = 'admin/getBarberos';
+        return view('administrador.registros',compact('url'));
     }
 
     public function getClientesDatatables(){
-        $clientes = new Cliente();
-        $algo = DataTables::eloquent($clientes)->get();
-        dd($algo);
+        $query = DB::table('clientes')
+            ->select(
+                DB::raw('CONCAT(nombres, " ", apellido_paterno) as nombre_completo'),
+                DB::raw("DATE_FORMAT(fecha_nacimiento,'%d-%m-%Y') as fecha_nacimiento"),
+                'email',
+                'celular'
+            )
+            ->get();
+     
+        return DataTables::of($query)->toJson();
+    }
+
+    public function getBarberosDatatables(){
+        $query = DB::table('barberos')
+            ->select(
+                DB::raw('CONCAT(nombres, " ", apellido_paterno) as nombre_completo'),
+                DB::raw("DATE_FORMAT(fecha_nacimiento,'%d-%m-%Y') as fecha_nacimiento"),
+                'email',
+                'celular'
+            )
+            ->get();
+     
+        return DataTables::of($query)->toJson();
     }
 
     public function exportarExcel(){
