@@ -76,7 +76,8 @@ class ClienteController extends Controller
             'fecha_nacimiento'  => 'required|date|before_or_equal:'.\Carbon\Carbon::now()->subYears(18)->format('Y-m-d'),
         ],
         [
-        'fecha_nacimiento.before_or_equal' => 'Debe ser mayor de 18 años'
+        'fecha_nacimiento.before_or_equal' => 'Debe ser mayor de 18 años',
+        'email.unique' => 'El correo se encuentra registrado con otra cuenta'
         ]);
     }
 }

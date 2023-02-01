@@ -23,12 +23,11 @@ $(document).ready(function() {
     {
       initialView: 'listDay',
       locale: 'es',
-      /*/
       headerToolbar: {
-        left: 'prev next',
+        left: 'prev',
         center: 'title',
-      },      
-      /*/
+        right: 'next'
+      },
       validRange: {
           start: '{{date('Y-m-d h:i:s')}}'
       },
@@ -76,15 +75,13 @@ document.addEventListener('DOMContentLoaded', function() {
     locale: 'es',
     selectable: true,
     initialView: 'dayGridWeek',
-    /*/
     headerToolbar: {
-      left: 'prev,next today',
-      center: 'title',
-      right: 'dayGridMonth,timeGridWeek,timeGridDay'
+        left: 'prev',
+        center: 'title',
+        right: 'next'
     },
-    /*/
     dateClick: function(info) {
-      alert('clicked ' + info.dateStr);
+      
     },
     select: function(info) {
       end = subtractDays(info.end, 1);
@@ -212,14 +209,25 @@ $( "#reservarHora" ).submit(function(e) {
 }); 
 </script>
 <style> 
-@media screen and (max-width:767px) { .fc-toolbar.fc-header-toolbar {font-size: 55%}}
+@media screen and (max-width:767px) { 
+  .fc-toolbar.fc-header-toolbar {
+    font-size: 55%;
 
+  }
+}
+
+@media screen and (min-width:768px) { 
+  .fc-toolbar.fc-header-toolbar {
+    font-size: 70%; 
+    margin-top: 5px;
+  }
+}
 .fc-daygrid-event{
   font-size:  5x !important;
 }
 
 .fc-toolbar-title{
-  font-size:  22px !important;
+  font-size:  20px !important;
 }
 
 </style>
