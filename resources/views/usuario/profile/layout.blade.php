@@ -77,7 +77,7 @@
   html {
     margin: 0;
     background-size: cover;
-    background: url('{{ url("imagenes/barbershop-1612726-min.jpg") }}') no-repeat center center fixed;
+    background: black no-repeat center center fixed;
     background-blend-mode: darken;
     // blend mode optional at this stage; will be used more in the next demo.
 
@@ -114,9 +114,9 @@
 <script>
 $(document).ready(function() {
   var bgImageArray = [
-      '{{ url("imagenes/barbershop-1612726-min.jpg") }}',
-      '{{ url("imagenes/barbershop-4762345-min.jpg") }}',
-      '{{ url("imagenes/barber-5194406-min.jpg") }}'
+      '{{ url("imagenes/back01.jpeg") }}',
+      '{{ url("imagenes/back02.jpeg") }}',
+      '{{ url("imagenes/back03.jpeg") }}'
       ];
   base = "",
   secs = 4;

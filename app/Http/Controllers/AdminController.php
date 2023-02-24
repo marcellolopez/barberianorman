@@ -13,10 +13,6 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class AdminController extends Controller
 {
-    public function viewLogin(){
-        return view('administrador.login');
-    }
-
     public function index(Request $request){
         $barberos  = Barbero::all();
         $barber_id = isset($request->barber_id) ? $request->barber_id : null;
@@ -31,18 +27,21 @@ class AdminController extends Controller
     }    
 
     public function cargarAgendaBarbero(Request $request){
-        $reservas= Reserva::select(
-            'id',
-            'barber_id',
-            'cliente_id',
-            'title',
-            'start',
-            'end',
-            DB::raw("DATE_FORMAT(start,'%d-%m-%Y') as start_fecha"),
-            DB::raw("TIME_FORMAT(start, '%H:%i %p') as start_hora"),
-            DB::raw("DATE_FORMAT(end,'%d-%m-%Y') as end_fecha"),
-            DB::raw("TIME_FORMAT(end, '%H:%i %p') as end_hora")
+        $reservas= Reserva::from('reservas as r')->select(
+            'r.id as reserva_id',
+            'r.barber_id',
+            'r.cliente_id',
+            'r.title',
+            'r.start',
+            'r.end',
+            DB::raw("DATE_FORMAT(r.start,'%d-%m-%Y') as start_fecha"),
+            DB::raw("TIME_FORMAT(r.start, '%H:%i %p') as start_hora"),
+            DB::raw("DATE_FORMAT(r.end,'%d-%m-%Y') as end_fecha"),
+            DB::raw("TIME_FORMAT(r.end, '%H:%i %p') as end_hora"),
+            DB::raw("CONCAT(c.nombres, ' ', c.apellido_paterno) as nombre_completo"),
+            'c.celular as telefono'
         )
+        ->leftjoin('clientes as c','c.id','r.cliente_id')
         ->where('barber_id', $request->barber_id)
         ->where('start', '>=', Carbon::now('America/Santiago')->format('Y-m-d h:i:s'))
         ->get();
@@ -77,6 +76,36 @@ class AdminController extends Controller
         return $html;
         if($html){
             return response()->json(['status' => '200', 'view' => $html]); 
+        }
+        else{
+            return response()->json(['status' => '500']); 
+        }
+        
+    }
+
+    public function actualizarHora(Request $request){
+        $reserva = Reserva::find($request->reserva_id);
+
+        switch ($request->id) {
+            case 1:
+                // Liberar
+                $reserva->cliente_id = null;
+                $reserva->title = 'Libre';
+                $reserva->save();
+                break;
+            case 2:
+                // Eliminar
+                $reserva->delete();
+                break;
+            case 3:
+                // Bloquear
+                $reserva->title = 'Bloqueada';
+                $reserva->save();
+                break;
+        }
+
+        if($reserva){
+            return response()->json(['status' => '200']); 
         }
         else{
             return response()->json(['status' => '500']); 
@@ -165,4 +194,6 @@ class AdminController extends Controller
     public function menu(Request $request){
         $request->session()->put('menu', $request->menu);
     }    
+
+
 }

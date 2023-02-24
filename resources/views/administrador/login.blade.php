@@ -53,7 +53,7 @@
 
                 <div class="card-body">
                   <div class="d-flex justify-content-center py-4">
-                    <a href="index.html" class="d-flex align-items-center w-50">
+                    <a href="{{url('admin')}}" class="d-flex align-items-center w-50">
                       <img class="img-fluid" src="/imagenes/logo-grande.png" alt="">
                       <span class="d-none d-lg-block"><img src="/assets/img/letras-logo.png" alt=""></span>
                     </a>
@@ -63,7 +63,7 @@
                     <p class="text-center small">Ingresa tu email y password</p>
                   </div>
 
-                  <form class="row g-3 needs-validation" action="/usuario/login" method="POST">
+                  <form class="row g-3 needs-validation" action="{{url('admin/loginForm')}}" method="POST">
                     @csrf <!-- {{ csrf_field() }} -->
                     <div class="col-12">
                       <label for="yourUsername" class="form-label">Email</label>

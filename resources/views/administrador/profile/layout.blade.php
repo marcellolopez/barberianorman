@@ -75,7 +75,7 @@
   html {
     margin: 0;
     background-size: cover;
-    background: url('{{ url("imagenes/barbershop-1612726-min.jpg") }}') no-repeat center center fixed;
+    background: black no-repeat center center fixed;
     background-blend-mode: darken;
     // blend mode optional at this stage; will be used more in the next demo.
 
@@ -107,13 +107,29 @@
                           rgba(0, 0, 0, 1) 75%,
                           transparent)
   }
+
+  .fc-list-event{
+    cursor: pointer !important;
+  }
+
+  #spinner-div {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.8);
+    z-index: 9999;
+  }
 </style>
 <script>
 $(document).ready(function() {
   var bgImageArray = [
-      '{{ url("imagenes/barbershop-1612726-min.jpg") }}',
-      '{{ url("imagenes/barbershop-4762345-min.jpg") }}',
-      '{{ url("imagenes/barber-5194406-min.jpg") }}'
+      '{{ url("imagenes/back01.jpeg") }}',
+      '{{ url("imagenes/back02.jpeg") }}',
+      '{{ url("imagenes/back03.jpeg") }}'
       ];
   base = "",
   secs = 4;
@@ -158,4 +174,10 @@ $(document).ready(function() {
         });
     });
   </script>
+  <div id="spinner-div" class="pt-5">
+    <div id="div" class="align-middle" style="margin-top: 15%;">
+      <div  class="spinner-grow text-dark align-middle" role="status">
+      </div>
+    </div>
+  </div>
 </html>

@@ -5,6 +5,7 @@ use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\AgendaController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Auth\LoginAdminController;
 use App\Http\Controllers\BarberoController;
 use App\Http\Controllers\ArchivosController;
 
@@ -31,21 +32,25 @@ Route::post('reservarHora', [AgendaController::class, 'reservarHora']);
 Route::get('send', 'IndexController@send');
 
 
-Route::get('admin/login', [AdminController::class, 'viewLogin']);
-Route::get('admin/index', [AdminController::class, 'index']);
-Route::get('admin/agenda', [AdminController::class, 'agendarCliente']);
-Route::get('admin/verClientes', [AdminController::class, 'verClientes']);
-Route::get('admin/verBarberos', [AdminController::class, 'verBarberos']);
-Route::get('admin/getClientes', [AdminController::class, 'getClientesDatatables']);
-Route::get('admin/getBarberos', [AdminController::class, 'getBarberosDatatables']);
-Route::get('admin/reportes', [AdminController::class, 'exportarExcel']);
-Route::post('admin/menu', [AdminController::class, 'menu']);
+Route::get('admin/login', [LoginAdminController::class, 'viewLogin'])->name('admin/login');
+Route::post('admin/loginForm', [LoginAdminController::class, 'authenticate'])->name('admin/loginForm');
+Route::get('admin', [LoginAdminController::class, 'index'])->middleware('canAccessAdministrador');
 
+Route::get('admin/index', [AdminController::class, 'index'])->middleware('canAccessAdministrador');
+Route::get('admin/agenda', [AdminController::class, 'agendarCliente'])->middleware('canAccessAdministrador');
+Route::get('admin/verClientes', [AdminController::class, 'verClientes'])->middleware('canAccessAdministrador');
+Route::get('admin/verBarberos', [AdminController::class, 'verBarberos'])->middleware('canAccessAdministrador');
+Route::get('admin/getClientes', [AdminController::class, 'getClientesDatatables'])->middleware('canAccessAdministrador');
+Route::get('admin/getBarberos', [AdminController::class, 'getBarberosDatatables'])->middleware('canAccessAdministrador');
+Route::get('admin/reportes', [AdminController::class, 'exportarExcel'])->middleware('canAccessAdministrador');
+Route::post('admin/menu', [AdminController::class, 'menu'])->middleware('canAccessAdministrador');
+Route::get('admin/logout', [LoginAdminController::class, 'logout'])->middleware('canAccessAdministrador');
 
-Route::get('cargarAgendaBarbero', [AdminController::class, 'cargarAgendaBarbero']);
-Route::get('cargarProgramacionBarbero', [AdminController::class, 'cargarProgramacionBarbero']);
-Route::post('guardarProgramacionBarbero', [AdminController::class, 'guardarProgramacionBarbero']);
-Route::get('calendarioBarbero', [AdminController::class, 'calendarioBarberoAjax']);
+Route::post('actualizarHora', [AdminController::class, 'actualizarHora']);
+Route::get('cargarAgendaBarbero', [AdminController::class, 'cargarAgendaBarbero'])->middleware('canAccessAdministrador');
+Route::get('cargarProgramacionBarbero', [AdminController::class, 'cargarProgramacionBarbero'])->middleware('canAccessAdministrador');
+Route::post('guardarProgramacionBarbero', [AdminController::class, 'guardarProgramacionBarbero'])->middleware('canAccessAdministrador');
+Route::get('calendarioBarbero', [AdminController::class, 'calendarioBarberoAjax'])->middleware('canAccessAdministrador');
 
 Route::post('actualizarBarbero', [BarberoController::class, 'actualizarBarbero']);
 
