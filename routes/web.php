@@ -44,6 +44,7 @@ Route::get('admin/getClientes', [AdminController::class, 'getClientesDatatables'
 Route::get('admin/getBarberos', [AdminController::class, 'getBarberosDatatables'])->middleware('canAccessAdministrador');
 Route::get('admin/reportes', [AdminController::class, 'exportarExcel'])->middleware('canAccessAdministrador');
 Route::post('admin/menu', [AdminController::class, 'menu'])->middleware('canAccessAdministrador');
+Route::get('admin/documentos', [ArchivosController::class, 'bizagi'])->middleware('canAccessAdministrador');
 Route::get('admin/logout', [LoginAdminController::class, 'logout'])->middleware('canAccessAdministrador');
 
 Route::post('actualizarHora', [AdminController::class, 'actualizarHora']);
@@ -54,7 +55,7 @@ Route::get('calendarioBarbero', [AdminController::class, 'calendarioBarberoAjax'
 
 Route::post('actualizarBarbero', [BarberoController::class, 'actualizarBarbero']);
 
-Route::get('bizagi', [ArchivosController::class, 'bizagi']);
+Route::get('bizagi', [ArchivosController::class, 'bizagi'])->middleware('canAccessAdministrador');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

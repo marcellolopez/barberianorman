@@ -102,6 +102,16 @@ class AdminController extends Controller
                 $reserva->title = 'Bloqueada';
                 $reserva->save();
                 break;
+            case 4:
+                // Bloquear
+                $reserva->title = 'Asiste';
+                $reserva->save();
+                break;
+            case 5:
+                // Bloquear
+                $reserva->title = 'No Asiste';
+                $reserva->save();
+                break;                                
         }
 
         if($reserva){

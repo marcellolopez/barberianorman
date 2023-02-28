@@ -43,6 +43,11 @@ $currentRoute = Route::current()->uri;
         </a>
       </li>          
       <li class="nav-item">
+        <a href="/bizagi" target="_blank" class="nav-link collapsed text-black">
+          <i class="bi bi-file-earmark-bar-graph"></i><span>Documentos</span>
+        </a>
+      </li>  
+      <li class="nav-item">
         <a href="/admin/logout" class="nav-link collapsed {{$currentRoute == 'admin/logout' ? 'active' : ''}} text-black">
           <i class="bi bi-door-closed"></i><span>Salir</span>
         </a>

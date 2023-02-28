@@ -37,6 +37,10 @@
                 <option value="1">Liberar</option>
                 <option value="2">Eliminar</option>
                 <option value="3">Bloquear</option>
+
+                <option value="4">Asiste</option>
+                <option value="5">No asiste</option>
+
               </select>
             </div>
             <div class="text-center mt-3">
