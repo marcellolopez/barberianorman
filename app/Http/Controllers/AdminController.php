@@ -146,7 +146,7 @@ class AdminController extends Controller
         $hora_inicio = Carbon::createFromFormat('Y-m-d H:i:s', $fecha_inicio.' '.'11:00:00');
         $fecha_hora_inicio  = $hora_inicio->format('Y-m-d H:i:s');
         $fecha_hora_termino = $hora_inicio->addHours(1);
-        for ($i=0; $i < 8 ; $i++) { 
+        for ($i=0; $i < 9 ; $i++) { 
             if(Reserva::where('start',$fecha_hora_inicio)->where('barber_id',$barber_id)->first() == null){
                 $reserva            = new Reserva();
                 $reserva->barber_id = $barber_id;
