@@ -56,9 +56,14 @@ $(document).ready(function() {
           $('#label-telefono').text(info.event.extendedProps.telefono);
           $('#reserva_id').text(info.event.extendedProps.reserva_id);
           $('#modal-body').show();
+          $('#modal-footer').show();
+        }
+        else if(info.event.title == "Bloqueada"){
+          return false;
         }
         else{
           $('#modal-body').hide();
+          $('#modal-footer').show();
         }
         $('#evento').modal('show');
         console.log(info.event.extendedProps);
