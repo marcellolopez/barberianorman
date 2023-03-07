@@ -12,7 +12,7 @@
                 <h1 class="card-title display-2 text-center text-black d-none">Bienvenido</h1>
                 <img src="imagenes/logo-grande.png" class="d-none d-sm-block rounded mx-auto d-block w-25 m-4" alt="...">
                 <img src="imagenes/logo-grande.png" class="d-block d-sm-none rounded mx-auto d-block w-50 m-4" alt="...">
-                <p class="text-center h5 text-black mb-3">Para comenzar, ingrese su número móvil</p>
+                <p class="text-center h5 text-black mb-3">Has la reserva ingresando tus datos</p>
 
                 <!-- General Form Elements -->
                 <form id="consultar_cliente" name="consultar_cliente" method="post" >
@@ -27,7 +27,7 @@
                   </div>
                   <div class="row mb-3">
                     <div class="col-sm-12 text-center">
-                      <button id="consultar" name="consultar" type="submit" class="btn btn-outline-dark btn-block input-block-level">Consultar</button>
+                      <button id="consultar" name="consultar" type="submit" class="btn btn-outline-dark btn-block input-block-level">Continuar</button>
                     </div>
                   </div>
                 </form><!-- End General Form Elements -->
@@ -69,7 +69,7 @@
                     </div>
                     <div class="row mb-3">
                       <div class="col-sm-12 text-center">
-                        <button id="registrar" type="submit" class="btn btn-outline-dark btn-block input-block-level">Registrar</button>
+                        <button id="registrar" type="submit" class="btn btn-outline-dark btn-block input-block-level">Registrarse</button>
                       </div>
                     </div>
                   </div>
