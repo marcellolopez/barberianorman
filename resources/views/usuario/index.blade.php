@@ -133,7 +133,8 @@
                     <p class="text-center">Te esperamos el día <strong class="fecha"></strong> a las <strong class="hora"></strong>.</p>
                     <p class="text-center">Recuerda llegar 10 minutos antes de tu hora.</p>
                     <p class="text-center text-muted">Si deseas cancelar tu reserva, llama al +56 9 5807 6656</p>
-
+                    <br>
+                    <p id="contador" class="text-center fw-bold"></p>
                   </div>
                 </div>
               </div>

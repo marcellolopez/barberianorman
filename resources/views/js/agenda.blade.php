@@ -211,6 +211,7 @@ $( "#reservarHora" ).submit(function(e) {
             console.log(calendar);
             calendar.refetchEvents();
             $('#info').delay(500).fadeIn(500);
+            tiempo();
             
           }
         },
