@@ -43,7 +43,7 @@ class AdminController extends Controller
         )
         ->leftjoin('clientes as c','c.id','r.cliente_id')
         ->where('barber_id', $request->barber_id)
-        ->where('start', '>=', Carbon::now('America/Santiago')->format('Y-m-d h:i:s'))
+        ->where('start', '>=', Carbon::now('America/Santiago')->subDay()->format('Y-m-d'))
         ->get();
         return response()->json($reservas);
     }     
@@ -99,7 +99,7 @@ class AdminController extends Controller
                 break;
             case 3:
                 // Bloquear
-                $reserva->title = 'Bloqueada';
+                $reserva->title = $reserva->title == 'Bloqueada' ? 'Libre' : 'Bloqueada';
                 $reserva->save();
                 break;
             case 4:

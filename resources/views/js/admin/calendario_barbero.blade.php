@@ -57,19 +57,22 @@ $(document).ready(function() {
           $('#reserva_id').text(info.event.extendedProps.reserva_id);
           $('#modal-body').show();
           $('#modal-footer').show();
+          $('#optionBloq').text('Bloquear');
         }
         else if(info.event.title == "Bloqueada"){
-          return false;
+          $('#optionBloq').text('Desbloquear');
         }
         else{
           $('#modal-body').hide();
           $('#modal-footer').show();
+          $('#optionBloq').text('Bloquear');
         }
         $('#evento').modal('show');
         console.log(info.event.extendedProps);
         $('#fecha').text(info.event.extendedProps.start_fecha);
         $('#hora').text(info.event.extendedProps.start_hora);
         $('#modal_reserva_id').val(info.event.extendedProps.reserva_id);
+        $('#actualizarHora').trigger("reset");
       }
     });
     calendar.render();
