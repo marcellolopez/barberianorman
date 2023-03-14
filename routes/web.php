@@ -29,7 +29,7 @@ Route::get('cargarAgenda', [AgendaController::class, 'cargarAgenda']);
 Route::post('reservarHora', [AgendaController::class, 'reservarHora']);
 
 
-Route::get('send', 'IndexController@send');
+Route::get('send', [IndexController::class, 'send'] );
 
 
 Route::get('admin/login', [LoginAdminController::class, 'viewLogin'])->name('admin/login');
