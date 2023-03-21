@@ -24,6 +24,7 @@ class BarberoController extends Controller
 	        $barbero->email = $request->email;
 	        $barbero->celular = $request->celular;
 	        $barbero->fecha_nacimiento = $request->fecha_nacimiento;
+	        $barbero->bloqueado = isset($request->bloqueado) ? 1 : 0;
 	        if($barbero->save()){
 	            
 	            return response()->json(['status' => '200']); 

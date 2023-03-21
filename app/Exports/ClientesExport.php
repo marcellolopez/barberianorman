@@ -29,7 +29,7 @@ class ClientesExport implements FromQuery, WithHeadings, ShouldAutoSize
             DB::raw("DATE_FORMAT(r.start,'%H:%i %p') as hora_inicio"),
             DB::raw("DATE_FORMAT(r.end,'%H:%i %p') as hora_termino"),
             DB::raw("'1 hora' as duracion"),
-            DB::raw("'Sin estatus' as estatus_final"),
+            DB::raw("r.title as estatus_final"),
             DB::raw("'0' as valor_final")
 
         )

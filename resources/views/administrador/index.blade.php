@@ -14,7 +14,7 @@
                 <!-- General Form Elements -->
                 <form id="consultar_cliente" name="consultar_cliente" method="post" >
                   <div class="row mb-3">
-                    <label for="inputNumber" class="col-sm-4 col-form-label">Teléfono</label>
+                    <label for="inputNumber" class="col-sm-4 col-form-label">Barbero</label>
                     <div class="col-sm-8">
                       <select class="form-select" id="select_barbero" aria-label="">
                         <option value="0" >Seleccione un barbero</option>
@@ -26,7 +26,7 @@
                   </div>
                 </form><!-- End General Form Elements -->
                 @if($barbero != null)
-                  <form id="registrar_barbero" name="registrar_barbero" method="post" >
+                  <form id="registrar_barbero" name="registrar_barbero" method="post">
                     @csrf
                     <input type="hidden" id="barber_id" name="barber_id" value="{{$barbero->id}}">
                     <div class="row mb-3">
@@ -63,6 +63,15 @@
                           <input  id="fecha_nacimiento" name="fecha_nacimiento" type="date" class="form-control" value="{{$barbero->fecha_nacimiento}}" required>
                         </div>
                       </div>
+                      <div class="row mb-3">
+                        <label for="inputText" class="col-sm-4 col-form-label">Bloqueado</label>
+                        <div class="col-sm-8">
+                          <div class="form-check form-switch mt-2">
+                            <input class="form-check-input" type="checkbox" role="switch" name="bloqueado" id="bloqueado" value="1" {{$barbero->bloqueado == 1 ? 'checked' : ''}}>
+                            <label class="form-check-label" for="flexSwitchCheckChecked"></label>
+                          </div>
+                        </div>
+                      </div>                        
                       <div class="row mb-3">
                         <div class="col-sm-12 text-center">
                           <button id="registrar" type="submit" class="btn btn-outline-dark btn-block input-block-level">Actualizar</button>

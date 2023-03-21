@@ -97,5 +97,33 @@ $(document).ready(function() {
           }
       });
   }); 
+  $( "#registrar_barbero" ).submit(function(e) {
+      e.preventDefault();
+      $.ajax({
+          type: "post",
+          url:'{{ url("actualizarBarbero") }}',
+          data: $(this).serialize(),
+          success: function (response) {  
+            if(response.status == 500){
+              if(response.validate == false){
+                $.each(response.errors, function(index, value) {
+                  alertify.warning(value);
+                })
+              }
+              else{
+                alertify.warning(response.mensaje);
+              }
+            }
+            else{
+              alertify.success('¡Barbero actualizado!');
+            }
+          },
+          error: function (data) {
+              console.log('Error:', data);
+          },
+          beforeSend: function() {
+          }
+      });
+  }); 
 });
 </script>
