@@ -43,7 +43,7 @@ class AdminController extends Controller
         )
         ->leftjoin('clientes as c','c.id','r.cliente_id')
         ->where('barber_id', $request->barber_id)
-        ->where('start', '>=', Carbon::now('America/Santiago')->subDay()->format('Y-m-d'))
+        //->where('start', '>=', Carbon::now('America/Santiago')->subDay()->format('Y-m-d'))
         ->get();
         return response()->json($reservas);
     }     

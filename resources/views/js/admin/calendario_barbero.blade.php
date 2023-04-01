@@ -28,9 +28,11 @@ $(document).ready(function() {
         center: 'title',
         right: 'next'
       },
+      /*/
       validRange: {
           start: '{{date('Y-m-d h:i:s')}}'
       },
+      /*/
       select: function(start, end) {
           if(start.isBefore(moment())) {
               $('#calendar').fullCalendar('unselect');
