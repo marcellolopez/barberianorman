@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use GuzzleHttp;
 use Twilio\Rest\Client; 
 use App\Models\Barbero;
+use App\Models\Reserva;
+use DB, Carbon\Carbon;
 
 class IndexController extends Controller
 { 
@@ -14,20 +16,57 @@ class IndexController extends Controller
       $barber_id = null;
       return view('usuario.index', compact('barberos', 'barber_id'));
     }    
-    static function send(){
-        $sid    = "ACdfe1f06ed553ab8425c0904d2f661948"; 
-        $token  = "8e1318c41b9df4f6e2f24b988eeda6d1"; 
-        $twilio = new Client($sid, $token); 
-        $body = 'Hola hola';/*"¡Hola,". $array['nombre'] ."! Ya agendamos tu solicitud de reserva para el día ".$array['dia']." a las ".$array['hora'].". 
-        Te recordaremos por este medio el día de tu cita... ¡Te esperamos!";*/
-        $message = $twilio->messages 
-                    ->create("whatsapp:+56974163322" , // to 
-                        array( 
-                            "from" => "whatsapp:+56949722564",       
-                            "body" => $body
-                        ) 
-                    ); 
-         
-        return $message;
-    }  
+    static function send($request = null){
+        //TOKEN QUE NOS DA FACEBOOK
+        $token = env('TOKEN_WSP');
+        //NUESTRO TELEFONO
+        $telefono = $request['telefono'];
+        //URL A DONDE SE MANDARA EL MENSAJE
+        $url = env('URL_WSP');
+
+        //CONFIGURACION DEL MENSAJE
+        $mensaje = ''
+                . '{'
+                . '"messaging_product": "whatsapp", '
+                . '"to": "'.$telefono.'", '
+                . '"type": "template", '
+                . '"template": '
+                . '{'
+                . '     "name": "recordatorio",'
+                . '     "language":{ "code": "es_ES" },'
+                .'      "components": [
+                            {
+                                "type": "body",
+                                "parameters": [
+                                    {
+                                        "type": "text",
+                                        "text": "'.$request['nombre'].'"
+                                    },
+                                    {
+                                        "type": "text",
+                                        "text": "'.$request['hora'].'"
+                                    },
+                                ]
+                            }
+                        ],'
+                . '} '
+                . '}';
+
+        //DECLARAMOS LAS CABECERAS
+        $header = array("Authorization: Bearer " . $token, "Content-Type: application/json",);
+        //INICIAMOS EL CURL
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $mensaje);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $header);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        //OBTENEMOS LA RESPUESTA DEL ENVIO DE INFORMACION
+        $response = json_decode(curl_exec($curl), true);
+        //IMPRIMIMOS LA RESPUESTA 
+        print_r($response);
+        //OBTENEMOS EL CODIGO DE LA RESPUESTA
+        $status_code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+        //CERRAMOS EL CURL
+        curl_close($curl);
+    }
 }

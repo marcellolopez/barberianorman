@@ -14,7 +14,7 @@ class ClientesExport implements FromQuery, WithHeadings, ShouldAutoSize
     public function query()
     {
         return Reserva::query()->from('reservas as r')
-        ->join('clientes as c','r.cliente_id','c.id')
+        ->leftjoin('clientes as c','r.cliente_id','c.id')
         ->join('barberos as b','r.barber_id','b.id')
         ->select(
             DB::raw("DATE_FORMAT(r.start,'%d') as dia"),
