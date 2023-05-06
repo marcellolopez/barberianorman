@@ -7,7 +7,7 @@ use GuzzleHttp;
 use Twilio\Rest\Client; 
 use App\Models\Barbero;
 use App\Models\Reserva;
-use DB, Carbon\Carbon;
+use DB, Log, Carbon\Carbon;
 
 class IndexController extends Controller
 { 
