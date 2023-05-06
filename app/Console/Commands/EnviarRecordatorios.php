@@ -5,7 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use App\Http\Controllers\IndexController;
 use App\Models\Reserva;
-use DB, Carbon\Carbon;
+use DB, Carbon\Carbon, Log;
 
 class EnviarRecordatorios extends Command
 {
@@ -40,16 +40,19 @@ class EnviarRecordatorios extends Command
      */
     public function handle()
     {
-        $fecha    = Carbon::now('America/Santiago')
-                    ->addDay() //RECORDAR QUITAR CUANDO SE HABILITE CRON
-                    ->format('Y-m-d');
+        Log::info('Envío de recordatorios');
 
+        $fecha    = Carbon::now('America/Santiago')
+                    //->addDay() //RECORDAR QUITAR CUANDO SE HABILITE CRON
+                    ->format('Y-m-d');
+        Log::info($fecha);
         $reservas = Reserva::with('cliente')
                     ->where(DB::raw("(DATE_FORMAT(RESERVAS.start,'%Y-%m-%d'))"),$fecha)
                     ->where('title','Ocupado')
                     ->get();
 
         if($reservas == null){
+            Log::info('Sin reservas');
             echo 'Sin reservas';
         }
         else{
@@ -62,10 +65,15 @@ class EnviarRecordatorios extends Command
                     IndexController::send($request);
                 }
                 else{
+                    Log::info('Cliente sin recordatorio número '. $r->cliente->celular);
                     echo 'Cliente sin recordatorio número '. $r->cliente->celular ;
                 }
             }
         }
+        Log::info('Fin envío recordatorios');
+        Log::info('-----------------------');
+        Log::info('-----------------------');
+        Log::info('-----------------------');
     }
       
 }

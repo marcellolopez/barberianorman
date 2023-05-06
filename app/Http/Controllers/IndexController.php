@@ -23,7 +23,9 @@ class IndexController extends Controller
         $telefono = $request['telefono'];
         //URL A DONDE SE MANDARA EL MENSAJE
         $url = env('URL_WSP');
-
+        Log::info('Celular: '. $request['nombre']);
+        Log::info('Nombre: '. $request['telefono']);
+        Log::info('Hora: '. $request['hora']);
         //CONFIGURACION DEL MENSAJE
         $mensaje = ''
                 . '{'
@@ -64,6 +66,7 @@ class IndexController extends Controller
         $response = json_decode(curl_exec($curl), true);
         //IMPRIMIMOS LA RESPUESTA 
         print_r($response);
+        Log::info($response);
         //OBTENEMOS EL CODIGO DE LA RESPUESTA
         $status_code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
         //CERRAMOS EL CURL
