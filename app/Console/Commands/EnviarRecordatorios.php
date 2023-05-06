@@ -50,7 +50,8 @@ class EnviarRecordatorios extends Command
                     ->where(DB::raw("(DATE_FORMAT(RESERVAS.start,'%Y-%m-%d'))"),$fecha)
                     ->where('title','Ocupado')
                     ->get();
-
+        $enviados=0;
+        $noEnviados=0;
         if($reservas == null){
             Log::info('Sin reservas');
             echo 'Sin reservas';
@@ -63,17 +64,30 @@ class EnviarRecordatorios extends Command
                     $request['telefono']    =   '56'.$r->cliente->celular;
                     $request['hora']    =   Carbon::parse($r->start)->format('H:i');
                     IndexController::send($request);
+                    $enviados++;
                 }
                 else{
+                    $noEnviados++;
                     Log::info('Cliente sin recordatorio número '. $r->cliente->celular);
                     echo 'Cliente sin recordatorio número '. $r->cliente->celular ;
                 }
             }
         }
+        Log::info('-----------------------');
+        Log::info('Total enviados: '.$enviados);
+        Log::info('-----------------------');
+        Log::info('Total sin recordatorio: '.$noEnviados);
+        Log::info('-----------------------');
         Log::info('Fin envío recordatorios');
         Log::info('-----------------------');
         Log::info('-----------------------');
         Log::info('-----------------------');
+
+        $request = array();
+        $request['nombre']      =   'Marcello';
+        $request['telefono']    =   '56974163322';
+        $request['hora']        =   'Enviados: '.$enviados;
+        IndexController::send($request);
     }
       
 }
