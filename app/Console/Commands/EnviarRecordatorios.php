@@ -47,7 +47,7 @@ class EnviarRecordatorios extends Command
                     ->format('Y-m-d');
         Log::info($fecha);
         $reservas = Reserva::with('cliente')
-                    ->where(DB::raw("(DATE_FORMAT(RESERVAS.start,'%Y-%m-%d'))"),$fecha)
+                    ->where(DB::raw("(DATE_FORMAT(reservas.start,'%Y-%m-%d'))"),$fecha)
                     ->where('title','Ocupado')
                     ->get();
         $enviados=0;
