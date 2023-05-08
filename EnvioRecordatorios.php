@@ -1,0 +1,1 @@
+<?php exec( 'php artisan command:EnviarRecordatorios');?>
