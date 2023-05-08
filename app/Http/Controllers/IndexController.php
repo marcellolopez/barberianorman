@@ -23,8 +23,8 @@ class IndexController extends Controller
         $telefono = $request['telefono'];
         //URL A DONDE SE MANDARA EL MENSAJE
         $url = env('URL_WSP');
-        Log::info('Celular: '. $request['nombre']);
-        Log::info('Nombre: '. $request['telefono']);
+        Log::info('Nombre: '. $request['nombre']);
+        Log::info('Celular: '. $request['telefono']);
         Log::info('Hora: '. $request['hora']);
         //CONFIGURACION DEL MENSAJE
         $mensaje = ''
