@@ -87,7 +87,7 @@ class EnviarRecordatorios extends Command
         $request['nombre']      =   'Marcello';
         $request['telefono']    =   '56974163322';
         $request['hora']        =   'Enviados: '.$enviados;
-        IndexController::send($request);
+        //IndexController::send($request);
     }
       
 }
