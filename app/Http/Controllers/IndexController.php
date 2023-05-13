@@ -34,20 +34,32 @@ class IndexController extends Controller
                 . '"type": "template", '
                 . '"template": '
                 . '{'
-                . '     "name": "recordatorio",'
-                . '     "language":{ "code": "es_ES" },'
-                .'      "components": [
-                            {
-                                "type": "body",
+                . '     "name": "recordatorio_nuevo",'
+                . '     "language":{ "code": "es_MX" },'
+                .'      "components": [{
+                                "type": "header",
                                 "parameters": [
                                     {
                                         "type": "text",
                                         "text": "'.$request['nombre'].'"
-                                    },
+                                    },                                   
+                                ],   
+                            },
+                            {                          
+                                "type": "body",
+                                "parameters": [
                                     {
                                         "type": "text",
                                         "text": "'.$request['hora'].'"
                                     },
+                                    {
+                                        "type": "text",
+                                        "text": "Pedro Montt 1809, Valdivia"
+                                    },    
+                                    {
+                                        "type": "text",
+                                        "text": "+56982823855"
+                                    },                                                                     
                                 ]
                             }
                         ],'
