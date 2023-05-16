@@ -131,7 +131,6 @@
                     
                     <h3  class="text-center">¡Tu reserva ha sido realizada!</h3>
                     <p class="text-center">Te esperamos el día <strong class="fecha"></strong> a las <strong class="hora"></strong>.</p>
-                    <p class="text-center">Recuerda llegar 10 minutos antes de tu hora.</p>
                   </div>
                 </div>
               </div>

@@ -27,8 +27,7 @@ class AgendaController extends Controller
         )
         ->where('barber_id',$request->barber_id)
         ->where('start', '>', Carbon::now()->setTimezone('America/Santiago'))
-        ->where('title', 'Libre')
-        ->orWhere('title', 'Ocupado')
+        ->whereIn('title', ['Libre','Ocupado'])
         ->get();
 
         return response()->json($reservas);
