@@ -131,7 +131,7 @@
                     
                     <h3  class="text-center">¡Tu reserva ha sido realizada!</h3>
                     <p class="text-center">Te esperamos el día <strong class="fecha"></strong> a las <strong class="hora"></strong>.</p>
-                    <p class="text-center"></p>
+                    <p class="text-center">Se solicita puntualidad</p>
                     <p class="text-center text-muted">Si deseas cancelar tu reserva, llama al +56 9 8282 3855</p>
                     <br>
                     <p id="contador" class="text-center fw-bold"></p>
@@ -146,6 +146,7 @@
                 <div class="row mb-3 mt-1">
                   <div class="modal-body">
                     <p class="text-center">Tienes una reserva el día <strong class="fecha"></strong> a las <strong class="hora"></strong>.</p>
+                    <p class="text-center">Se solicita puntualidad</p>
                     <p class="text-center text-muted">Si deseas cancelar tu reserva, llama al +56 9 8282 3855</p>
                   </div>
                 </div>
