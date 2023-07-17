@@ -21,7 +21,7 @@ class AdminController extends Controller
     }    
 
     public function agendarCliente(){
-      $barberos = Barbero::all();
+      $barberos = Barbero::where('bloqueado',0)->get();
       $barber_id = null;
       return view('administrador.reservar', compact('barberos', 'barber_id'));
     }    
