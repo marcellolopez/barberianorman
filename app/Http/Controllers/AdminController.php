@@ -14,7 +14,7 @@ use Maatwebsite\Excel\Facades\Excel;
 class AdminController extends Controller
 {
     public function index(Request $request){
-        $barberos  = Barbero::all();
+        $barberos  = Barbero::where('bloqueado',0)->get();
         $barber_id = isset($request->barber_id) ? $request->barber_id : null;
         $barbero   = $barberos->where('id',$barber_id)->first();
         return view('administrador.index', compact('barberos', 'barber_id', 'barbero'));
