@@ -43,7 +43,7 @@ $(document).ready(function() {
           url: '{{ url("cargarAgendaBarbero") }}?barber_id={{$barber_id}}'
       },
       eventDidMount: function(info) {
-        if(info.event.title == "Ocupado") {
+        if(info.event.title == "Ocupado" || info.event.title == "Ocupado (C)") {
           info.el.children[1].children[0]['style'].border = 'calc(var(--fc-list-event-dot-width, 10px) / 2) solid #dc3545';          
         }       
       },
@@ -52,10 +52,19 @@ $(document).ready(function() {
         $("#evento").modal("show");
       },
       eventClick: function(info) {
-        if(info.event.title == "Ocupado") {
+        if(info.event.title == "Ocupado" || info.event.title == "Ocupado (C)") {
 
           $('#label-nombre').text(info.event.extendedProps.nombre_completo);
           $('#label-telefono').text(info.event.extendedProps.telefono);
+          
+          if(info.event.extendedProps.comentario != ''){
+            $('#div-comentario').show();
+            $('#label-comentario').text(info.event.extendedProps.comentario);
+          }
+          else{
+            $('#div-comentario').hide();
+          }
+          
           $('#reserva_id').text(info.event.extendedProps.reserva_id);
           $('#modal-body').show();
           $('#modal-footer').show();
@@ -127,7 +136,7 @@ document.addEventListener('DOMContentLoaded', function() {
     minTime: "11:00:00",
     maxTime: "18:00:00",
     eventDidMount: function(info) {
-      if(info.event.title == "Ocupado") {
+      if(info.event.title == "Ocupado" || info.event.title == "Ocupado (C)") {
 
         /*info.el.children[1].children[0]['style'] = 'calc(var(--fc-list-event-dot-width, 10px) / 2) solid #dc3545';          */
       }

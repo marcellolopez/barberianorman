@@ -73,6 +73,7 @@ class EnviarRecordatorios extends Command
                 }
             }
         }
+        
         Log::info('-----------------------');
         Log::info('Total enviados: '.$enviados);
         Log::info('-----------------------');

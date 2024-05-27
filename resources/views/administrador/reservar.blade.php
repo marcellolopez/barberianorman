@@ -113,6 +113,7 @@
                         <input id="reserva_id" name="reserva_id" type="hidden">
                         <input id="modal_celular" name="modal_celular" type="hidden">
                         <p class="text-center">¿Deseas reservar para el día <strong class="fecha"></strong> a las <strong class="hora"></strong>?</p>
+                        <textarea id="comentario" name="comentario" class="form-control mt-2" placeholder="¿Tienes alguna pregunta o comentario?" maxlength="500"></textarea>
                     </div>
                     <div class="text-center">
                       <button type="submit" class="btn btn-outline-primary" id="btnGuardar">Reservar</button>

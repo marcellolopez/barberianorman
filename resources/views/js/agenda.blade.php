@@ -12,6 +12,7 @@
             <input id="reserva_id" name="reserva_id" type="hidden">
             <input id="modal_celular" name="modal_celular" type="hidden">
             <p class="fs-4 text-center">¿Deseas reservar para el día <strong id="fecha"></strong> a las <strong id="hora"></strong>?</p>
+            <textarea id="comentario" name="comentario" class="form-control mt-2" placeholder="¿Tienes alguna pregunta o comentario?" maxlength="500"></textarea>
         </div>
         <div class="modal-footer">
           <button type="submit" class="btn btn-outline-primary" id="btnGuardar">Reservar</button>
@@ -200,7 +201,8 @@ $( "#reservarHora" ).submit(function(e) {
         data: {
           "_token": "{{ csrf_token() }}",
           'id': $("#reserva_id").val(),
-          'celular': $("#modal_celular").val()
+          'celular': $("#modal_celular").val(),
+          'comentario': $("#comentario").val()
         },
         success: function (response) {
           if(response.status == 500){

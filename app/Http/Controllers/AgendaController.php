@@ -20,6 +20,7 @@ class AgendaController extends Controller
             'title',
             'start',
             'end',
+            'comentario',
             DB::raw("DATE_FORMAT(start,'%d-%m-%Y') as start_fecha"),
             DB::raw("TIME_FORMAT(start, '%H:%i %p') as start_hora"),
             DB::raw("DATE_FORMAT(end,'%d-%m-%Y') as end_fecha"),
@@ -60,8 +61,15 @@ class AgendaController extends Controller
         )
         ->where('id',$request->id)
         ->first();
-        $reserva->title = 'Ocupado';
+        if($request->comentario != ''){
+            $reserva->title = 'Ocupado (C)';
+        }
+        else{
+            $reserva->title = 'Ocupado';
+        }
+        
         $reserva->cliente_id = $cliente->id;
+        $reserva->comentario = $request->comentario;
         $reserva->reserva_admin = (Auth::check() ? Auth::user()->id : null);
         if($reserva->save()){
             $array = array();

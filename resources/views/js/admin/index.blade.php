@@ -19,7 +19,11 @@
                 <div class="col-8 col-form-label">
                   <label id="label-telefono" for="inputText"></label>
                 </div>
-              </div>             
+              </div> 
+              <div id="div-comentario" class="row mb-3 ml-2 mr-2">
+                <p>Comentario:</p>
+                <textarea class="form-control " id="label-comentario" rows="3" value="" readonly></textarea>
+              </div>            
             </form>
             @csrf
             <input id="reserva_id" name="reserva_id" type="hidden">

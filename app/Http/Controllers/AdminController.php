@@ -34,6 +34,7 @@ class AdminController extends Controller
             'r.title',
             'r.start',
             'r.end',
+            'r.comentario',
             DB::raw("DATE_FORMAT(r.start,'%d-%m-%Y') as start_fecha"),
             DB::raw("TIME_FORMAT(r.start, '%H:%i %p') as start_hora"),
             DB::raw("DATE_FORMAT(r.end,'%d-%m-%Y') as end_fecha"),
