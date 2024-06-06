@@ -41,6 +41,11 @@ $currentRoute = Route::current()->uri;
         <a href="/admin/reportes" class="nav-link collapsed {{$currentRoute == 'admin/reporte' ? 'active' : ''}} text-black">
           <i class="bi bi-file-earmark-bar-graph"></i><span>Reporte general</span>
         </a>
+      </li>
+      <li class="nav-item">
+        <a href="/admin/reportes_clientes" class="nav-link collapsed {{$currentRoute == 'admin/reportes_clientes' ? 'active' : ''}} text-black">
+          <i class="bi bi-file-earmark-bar-graph"></i><span>Reporte clientes</span>
+        </a>
       </li>          
       <li class="nav-item">
         <a href="/bizagi" target="_blank" class="nav-link collapsed text-black">

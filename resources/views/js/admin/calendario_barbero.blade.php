@@ -45,15 +45,18 @@ $(document).ready(function() {
       eventDidMount: function(info) {
         if(info.event.title == "Ocupado" || info.event.title == "Ocupado (C)") {
           info.el.children[1].children[0]['style'].border = 'calc(var(--fc-list-event-dot-width, 10px) / 2) solid #dc3545';          
-        }       
+        }
+        if(info.event.title == "Asiste") {
+          info.el.children[1].children[0]['style'].border = 'calc(var(--fc-list-event-dot-width, 10px) / 2) solid green';          
+        }         
       },
       dateClick:function(info){
 
         $("#evento").modal("show");
       },
       eventClick: function(info) {
-        if(info.event.title == "Ocupado" || info.event.title == "Ocupado (C)") {
-
+        if(info.event.title == "Ocupado" || info.event.title == "Ocupado (C)" || info.event.title == "Asiste") {
+          
           $('#label-nombre').text(info.event.extendedProps.nombre_completo);
           $('#label-telefono').text(info.event.extendedProps.telefono);
           

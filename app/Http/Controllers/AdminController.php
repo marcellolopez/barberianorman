@@ -9,6 +9,7 @@ use App\Models\Cliente;
 use DB, Carbon\Carbon;
 use DataTables;
 use App\Exports\ClientesExport;
+use App\Exports\ClientesReservasExport;
 use Maatwebsite\Excel\Facades\Excel;
 
 class AdminController extends Controller
@@ -177,21 +178,25 @@ class AdminController extends Controller
 
     public function verBarberos(){
         $url = 'admin/getBarberos';
-        return view('administrador.registros',compact('url'));
+        return view('administrador.registros_barberos',compact('url'));
     }
 
     public function getClientesDatatables(){
         $query = DB::table('clientes')
             ->select(
+                'id',
                 DB::raw('CONCAT(nombres, " ", apellido_paterno) as nombre_completo'),
-                DB::raw("DATE_FORMAT(fecha_nacimiento,'%d-%m-%Y') as fecha_nacimiento"),
+                DB::raw("DATE_FORMAT(fecha_nacimiento, '%d-%m-%Y') as fecha_nacimiento"),
                 'email',
-                'celular'
+                'celular',
+                DB::raw('(SELECT COUNT(*) FROM reservas WHERE reservas.cliente_id = clientes.id) as reservas_count'),
+                DB::raw('(SELECT DATE_FORMAT(MAX(start), "%d-%m-%Y %H:%i %p") FROM reservas WHERE reservas.cliente_id = clientes.id) as ultima_reserva')
             )
             ->get();
-     
+    
         return DataTables::of($query)->toJson();
     }
+    
 
     public function getBarberosDatatables(){
         $query = DB::table('barberos')
@@ -207,6 +212,10 @@ class AdminController extends Controller
     }
 
     public function exportarExcel(){
+        return Excel::download(new ClientesReservasExport, 'clientesReservas.xlsx');
+    }
+
+    public function exportarExcelClientes(){
         return Excel::download(new ClientesExport, 'clientes.xlsx');
     }
 
@@ -214,5 +223,23 @@ class AdminController extends Controller
         $request->session()->put('menu', $request->menu);
     }    
 
+    public function historial($id)
+    {
+        // Obtener el historial de reservas del cliente
+        $reservas = Reserva::where('cliente_id', $id)
+            ->join('barberos as b', 'reservas.barber_id', '=', 'b.id')
+            ->select(
+                'reservas.id',
+                DB::raw("DATE_FORMAT(reservas.start, '%d-%m-%Y %H:%i %p') as fecha_inicio"),
+                DB::raw("DATE_FORMAT(reservas.end, '%d-%m-%Y %H:%i %p') as fecha_termino"),
+                'reservas.title as estatus',
+                DB::raw("CONCAT(b.nombres, ' ', b.apellido_paterno) as nombre_barbero")
+            )
+            ->orderBy('reservas.start', 'desc')
+            ->get();
+
+        // Retornar la vista con el historial
+        return view('administrador.cliente_historial', compact('reservas'));
+    }
 
 }

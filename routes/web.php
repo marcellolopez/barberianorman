@@ -43,6 +43,7 @@ Route::get('admin/verBarberos', [AdminController::class, 'verBarberos'])->middle
 Route::get('admin/getClientes', [AdminController::class, 'getClientesDatatables'])->middleware('canAccessAdministrador');
 Route::get('admin/getBarberos', [AdminController::class, 'getBarberosDatatables'])->middleware('canAccessAdministrador');
 Route::get('admin/reportes', [AdminController::class, 'exportarExcel'])->middleware('canAccessAdministrador');
+Route::get('admin/reportes_clientes', [AdminController::class, 'exportarExcelClientes'])->middleware('canAccessAdministrador');
 Route::post('admin/menu', [AdminController::class, 'menu'])->middleware('canAccessAdministrador');
 Route::get('admin/documentos', [ArchivosController::class, 'bizagi'])->middleware('canAccessAdministrador');
 Route::get('admin/logout', [LoginAdminController::class, 'logout'])->middleware('canAccessAdministrador');
@@ -59,3 +60,5 @@ Route::get('bizagi', [ArchivosController::class, 'bizagi'])->middleware('canAcce
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/admin/cliente/historial/{id}', [AdminController::class, 'historial'])->name('admin.cliente.historial');
