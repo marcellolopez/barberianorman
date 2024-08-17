@@ -40,8 +40,15 @@ Route::get('admin/index', [AdminController::class, 'index'])->middleware('canAcc
 Route::get('admin/agenda', [AdminController::class, 'agendarCliente'])->middleware('canAccessAdministrador');
 Route::get('admin/verClientes', [AdminController::class, 'verClientes'])->middleware('canAccessAdministrador');
 Route::get('admin/verBarberos', [AdminController::class, 'verBarberos'])->middleware('canAccessAdministrador');
+Route::get('admin/servicios', [AdminController::class, 'servicios'])->middleware('canAccessAdministrador');
 Route::get('admin/getClientes', [AdminController::class, 'getClientesDatatables'])->middleware('canAccessAdministrador');
 Route::get('admin/getBarberos', [AdminController::class, 'getBarberosDatatables'])->middleware('canAccessAdministrador');
+Route::get('admin/getServicios', [AdminController::class, 'getServiciosDatatables'])->middleware('canAccessAdministrador');
+Route::post('admin/actualizar-orden', [AdminController::class, 'actualizarOrden']);
+Route::post('admin/agregar-servicio', [AdminController::class, 'agregarServicio'])->name('servicio.agregar');
+Route::get('admin/obtener-servicio/{id}', [AdminController::class, 'obtenerServicio']);
+Route::post('admin/actualizar-servicio', [AdminController::class, 'actualizarServicio']);
+Route::delete('admin/eliminar-servicio/{id}', [AdminController::class, 'eliminarServicio'])->name('servicio.eliminar');
 Route::get('admin/reportes', [AdminController::class, 'exportarExcel'])->middleware('canAccessAdministrador');
 Route::get('admin/reportes_clientes', [AdminController::class, 'exportarExcelClientes'])->middleware('canAccessAdministrador');
 Route::post('admin/menu', [AdminController::class, 'menu'])->middleware('canAccessAdministrador');

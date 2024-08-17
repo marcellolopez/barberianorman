@@ -84,21 +84,42 @@
               <div class="card-body mt-2">
                 <h5 class="card-title d-none">Agenda</h5>
                 <p class="text-center mt-2"><strong id="nombre_agendar">Marcello</strong>, selecciona un barbero y luego reserva tu hora</p>
-                <!-- General Form Elements -->
-                <div class="row mb-3 mt-1">
-                  <div class="offset-lg-3 col-lg-6">
-                    <select class="form-select" id="select_barbero" aria-label="">
-                      <option value="0" >Seleccione un barbero</option>
-                      @foreach($barberos as $b)
-                        <option value="{{$b->id}}" {{$b->id == $barber_id ? 'selected' : ''}}>{{$b->nombres}} {{$b->apellido_paterno}}</option>
-                      @endforeach
-                    </select>
+                <div class="card-body">
+                  <div class="row mb-3">
+                    <!--crea una tabla con nombre de servicios y precios-->
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th scope="col">Servicio</th>
+                          <th scope="col">Precio</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        @foreach($servicios as $s)
+                          <tr>
+                            <td>{{$s->nombre}}</td>
+                            <!-- imprime el precio con el formato chileno--> 
+                            <td>${{number_format($s->precio, 0, ',', '.')}}</td>
+                          </tr>
+                        @endforeach
+                      </tbody>
+                    </table>
+                  </div>
+                  <!-- General Form Elements -->
+                  <div class="row mb-3 mt-1">
+                    <div class="offset-lg-3 col-lg-6">
+                      <select class="form-select" id="select_barbero" aria-label="">
+                        <option value="0" >Seleccione un barbero</option>
+                        @foreach($barberos as $b)
+                          <option value="{{$b->id}}" {{$b->id == $barber_id ? 'selected' : ''}}>{{$b->nombres}} {{$b->apellido_paterno}}</option>
+                        @endforeach
+                      </select>
+                    </div>
+                  </div>
+                  <div class="div-calendario">
+                    <div id='calendar' class="calendar mt-1" style=""></div>
                   </div>
                 </div>
-                <div class="div-calendario">
-                  <div id='calendar' class="calendar mt-1" style=""></div>
-                </div>
-              </div>
             </div>
           </div>
           <div id="alerta" class="col-lg-6 offset-lg-3" style="display: none;">

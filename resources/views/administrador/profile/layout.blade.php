@@ -31,6 +31,10 @@
 
   <!-- Template Main CSS File -->
   <link href="{{asset('/')}}/assets/css/style.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/rowreorder/1.3.3/css/rowReorder.dataTables.min.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+
 
 
   <style type="text/css">

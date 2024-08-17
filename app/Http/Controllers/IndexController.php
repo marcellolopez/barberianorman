@@ -7,14 +7,16 @@ use GuzzleHttp;
 use Twilio\Rest\Client; 
 use App\Models\Barbero;
 use App\Models\Reserva;
+use App\Models\Servicio;
 use DB, Log, Carbon\Carbon;
 
 class IndexController extends Controller
 { 
     public function index(){
       $barberos = Barbero::where('bloqueado', 0)->get();
+      $servicios = Servicio::where('estado', 1)->orderBy('orden')->get();
       $barber_id = null;
-      return view('usuario.index', compact('barberos', 'barber_id'));
+      return view('usuario.index', compact('barberos', 'barber_id', 'servicios'));
     }    
     static function send($request = null){
         //TOKEN QUE NOS DA FACEBOOK

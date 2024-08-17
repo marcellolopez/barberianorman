@@ -8,13 +8,17 @@
         <div class="row">
           <div class="col-lg-5">
             <div class="card">
-              <div class="card-body">
+                <h5 class="card-title">Seleccione servicio</h5>
+
+                <!-- General Form Elements -->
+                </div>
                 <h5 class="card-title">Seleccione barbero</h5>
 
                 <!-- General Form Elements -->
                 <form id="consultar_cliente" name="consultar_cliente" method="post" >
                   <div class="row mb-3">
                     <label for="inputNumber" class="col-sm-4 col-form-label">Barbero</label>
+
                     <div class="col-sm-8">
                       <select class="form-select" id="select_barbero" aria-label="">
                         <option value="0" >Seleccione un barbero</option>

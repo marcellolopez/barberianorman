@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Barbero;
 use App\Models\Reserva;
 use App\Models\Cliente;
+use App\Models\Servicio;
 use DB, Carbon\Carbon;
 use DataTables;
 use App\Exports\ClientesExport;
@@ -181,6 +182,11 @@ class AdminController extends Controller
         return view('administrador.registros_barberos',compact('url'));
     }
 
+    public function servicios(){
+        $url = 'admin/getServicios';
+        return view('administrador.registros_servicios', compact('url'));
+    }
+
     public function getClientesDatatables(){
         $query = DB::table('clientes')
             ->select(
@@ -209,6 +215,79 @@ class AdminController extends Controller
             ->get();
      
         return DataTables::of($query)->toJson();
+    }
+
+    public function getServiciosDatatables(){
+        $query = DB::table('servicios')
+            ->select(
+                'nombre',
+                'precio',
+                'orden',
+                'id'
+            )
+            ->orderBy('orden', 'asc')            
+            ->get();
+
+        return DataTables::of($query)->toJson();
+    }
+
+    public function actualizarOrden(Request $request)
+    {
+        $ordenData = $request->input('ordenData');
+    
+        foreach ($ordenData as $data) {
+            Servicio::where('id', $data['id'])->update(['orden' => $data['orden']]);
+        }
+    
+        return response()->json(['success' => true]);
+    }    
+
+    public function agregarServicio(Request $request)
+    {
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'precio' => 'required|numeric',
+        ]);
+    
+        $servicio = new Servicio();
+        $servicio->nombre = $request->input('nombre');
+        $servicio->precio = $request->input('precio');
+        $servicio->orden = Servicio::max('orden') + 1; // Asignar el orden adecuado
+        $servicio->estado = 1;
+        $servicio->save();
+    
+        return response()->json(['success' => 'Servicio agregado correctamente']);
+    }
+    
+    public function obtenerServicio($id)
+    {
+        $servicio = Servicio::find($id);
+        return response()->json($servicio);
+    }
+    
+    public function actualizarServicio(Request $request)
+    {
+        $servicio = Servicio::find($request->id);
+        $servicio->nombre = $request->nombre;
+        $servicio->precio = $request->precio;
+        $servicio->save();
+     
+        return response()->json(['success' => true]);
+    }
+
+    public function eliminarServicio($id)
+    {
+        $servicio = Servicio::findOrFail($id);
+        $servicio->delete();
+
+        // Reordenar los servicios restantes
+        $servicios = Servicio::orderBy('orden')->get();
+        foreach ($servicios as $index => $servicio) {
+            $servicio->orden = $index + 1;
+            $servicio->save();
+        }
+        
+        return response()->json(['success' => 'Servicio eliminado correctamente']);
     }
 
     public function exportarExcel(){

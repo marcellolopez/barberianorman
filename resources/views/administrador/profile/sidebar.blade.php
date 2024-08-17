@@ -35,7 +35,12 @@ $currentRoute = Route::current()->uri;
           <a href="/admin/verBarberos" class="{{$currentRoute == 'admin/verBarberos' ? 'active' : ''}} text-black">
           <i class="bi bi-person"></i></i><span>Barberos</span>
           </a>
-        </li>        
+        </li>
+        <li>
+          <a href="/admin/servicios" class="{{$currentRoute == 'admin/servicios' ? 'active' : ''}} text-black">
+          <i class="bi bi-person"></i></i><span>Servicios</span>
+          </a>
+        </li>            
       </ul>
       <li class="nav-item">
         <a href="/admin/reportes" class="nav-link collapsed {{$currentRoute == 'admin/reporte' ? 'active' : ''}} text-black">
