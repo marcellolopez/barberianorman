@@ -235,7 +235,7 @@ $(document).ready(function() {
   $(".div-calendario").animate({height: "hide"},500);
 
   $('#select_barbero').on('change', function() {
-
+    $('#tabla_servicios').animate({height: "hide"},300); 
     var $barber_id = $('#select_barbero').val();
     $(".div-calendario").animate({height: "hide"},500); 
     

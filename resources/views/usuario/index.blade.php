@@ -85,7 +85,7 @@
                 <h5 class="card-title d-none">Agenda</h5>
                 <p class="text-center mt-2"><strong id="nombre_agendar">Marcello</strong>, selecciona un barbero y luego reserva tu hora</p>
                 <div class="card-body">
-                  <div class="row mb-3">
+                  <div id="tabla_servicios" class="row mb-3">
                     <!--crea una tabla con nombre de servicios y precios-->
                     <table class="table">
                       <thead>
@@ -120,6 +120,7 @@
                     <div id='calendar' class="calendar mt-1" style=""></div>
                   </div>
                 </div>
+              </div>
             </div>
           </div>
           <div id="alerta" class="col-lg-6 offset-lg-3" style="display: none;">
